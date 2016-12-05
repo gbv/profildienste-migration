@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: luca
- * Date: 28.08.16
- * Time: 17:54
- */
 
 namespace Migrations;
 
 
 use MongoDB\Collection;
+use Migrations\Common\UserMigration;
 
 class ChangeWatchlists extends UserMigration {
     /**

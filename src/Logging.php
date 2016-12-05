@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: luca
- * Date: 28.08.16
- * Time: 13:47
+ * A simple logging helper for writing info and error messages
+ * to STDOUT or STDERR respectively.
+ *
+ * Class Logging
  */
 trait Logging {
 

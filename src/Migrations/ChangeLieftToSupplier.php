@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: luca
- * Date: 28.08.16
- * Time: 17:13
- */
 
 namespace Migrations;
 
+use Migrations\Common\UserMigration;
 
 class ChangeLieftToSupplier extends UserMigration {
 

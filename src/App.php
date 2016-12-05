@@ -1,11 +1,12 @@
 <?php
 
-use Migrations\ChangeLieftToSupplier;
-use Migrations\ChangeWatchlists;
-use Migrations\RemovePageSizeSetting;
-use Migrations\RemoveUserPriceInfo;
-use Migrations\RenameBudgetsAndDefault;
+use Migrations\RemoveTitleWatchlistField;
 use MongoDB\Client;
+use Migrations\ChangeWatchlists;
+use Migrations\RemoveUserPriceInfo;
+use Migrations\RemovePageSizeSetting;
+use Migrations\ChangeLieftToSupplier;
+use Migrations\RenameBudgetsAndDefault;
 use MongoDB\Driver\Exception\ConnectionTimeoutException;
 
 /**
@@ -76,15 +77,17 @@ class App {
         $titles = $db->selectCollection('titles');
         $users = $db->selectCollection('users');
 
-        // run migrations
+        // define here which migrations to run
         $migrations = [
             new RemoveUserPriceInfo($users),
             new RemovePageSizeSetting($users),
             new ChangeLieftToSupplier($users),
             new RenameBudgetsAndDefault($users),
             new ChangeWatchlists($users, $titles),
+            new RemoveTitleWatchlistField($titles),
         ];
 
+        // run each migration as specified above
         foreach ($migrations as $migration) {
             $migration->apply();
         }

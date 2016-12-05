@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: luca
- * Date: 28.08.16
- * Time: 13:57
- */
 
 namespace Migrations;
 
+use Migrations\Common\UserMigration;
 
 class RemoveUserPriceInfo extends UserMigration {
 

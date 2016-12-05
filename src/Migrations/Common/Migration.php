@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: luca
- * Date: 28.08.16
- * Time: 13:58
- */
 
-namespace Migrations;
+namespace Migrations\Common;
 
 use Logging;
 
@@ -20,5 +14,10 @@ abstract class Migration {
 
     use Logging;
 
+    /**
+     * Applies the migration
+     *
+     * @return void
+     */
     public abstract function apply();
 }

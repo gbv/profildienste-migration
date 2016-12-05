@@ -1,13 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: luca
- * Date: 28.08.16
- * Time: 17:22
- */
 
 namespace Migrations;
 
+
+use Migrations\Common\UserMigration;
 
 class RenameBudgetsAndDefault extends UserMigration {
 
