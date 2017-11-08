@@ -1,5 +1,6 @@
 <?php
 
+use Migrations\FixMissingStatusField;
 use Migrations\RemoveTitleWatchlistField;
 use MongoDB\Client;
 use Migrations\ChangeWatchlists;
@@ -79,12 +80,13 @@ class App {
 
         // define here which migrations to run
         $migrations = [
-            new RemoveUserPriceInfo($users),
+           /* new RemoveUserPriceInfo($users),
             new RemovePageSizeSetting($users),
             new ChangeLieftToSupplier($users),
             new RenameBudgetsAndDefault($users),
             new ChangeWatchlists($users, $titles),
-            new RemoveTitleWatchlistField($titles),
+            new RemoveTitleWatchlistField($titles),*/
+           new FixMissingStatusField($titles)
         ];
 
         // run each migration as specified above
