@@ -14,10 +14,8 @@ class FixMissingStatusField extends TitleMigration {
      */
     public function apply() {
         $this->forEachTitle(function ($title){
-
-            if (is_null($title['status'])) {
-                $title['status'] = 'normal';
-            }
+            
+            $title['status'] = 'normal';
 
             return $title;
         }, function ($title){
