@@ -1,7 +1,9 @@
 <?php
 
+use Migrations\ChangeLieftToSupplierTitle;
 use Migrations\FixMissingStatusField;
 use Migrations\RemoveTitleWatchlistField;
+use Migrations\ResetMissingCovers;
 use MongoDB\Client;
 use Migrations\ChangeWatchlists;
 use Migrations\RemoveUserPriceInfo;
@@ -80,13 +82,15 @@ class App {
 
         // define here which migrations to run
         $migrations = [
-           /* new RemoveUserPriceInfo($users),
+           /*new RemoveUserPriceInfo($users),
             new RemovePageSizeSetting($users),
             new ChangeLieftToSupplier($users),
-            new RenameBudgetsAndDefault($users),
+            /*new RenameBudgetsAndDefault($users),
             new ChangeWatchlists($users, $titles),
-            new RemoveTitleWatchlistField($titles),*/
-           new FixMissingStatusField($titles)
+            new RemoveTitleWatchlistField($titles),
+            new FixMissingStatusField($titles)*/
+            new ChangeLieftToSupplierTitle($titles),
+            new ResetMissingCovers($titles)
         ];
 
         // run each migration as specified above

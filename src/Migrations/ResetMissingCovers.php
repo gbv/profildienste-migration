@@ -1,11 +1,17 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: luca
+ * Date: 02.12.17
+ * Time: 15:41
+ */
 
 namespace Migrations;
 
 
 use Migrations\Common\TitleMigration;
 
-class FixMissingStatusField extends TitleMigration {
+class ResetMissingCovers extends TitleMigration {
 
     /**
      * Applies the migration
@@ -14,12 +20,10 @@ class FixMissingStatusField extends TitleMigration {
      */
     public function apply() {
         $this->forEachTitle(function ($title){
-
-            $title['status'] = 'normal';
-
+            $title['XX02'] = null;
             return $title;
         }, function ($title){
-            return !array_key_exists('status', $title);
+            return $title['XX02'] === false;
         });
     }
 }
