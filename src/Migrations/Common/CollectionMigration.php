@@ -44,7 +44,7 @@ abstract class CollectionMigration extends Migration {
     public function forEachElement(callable $func, callable $applicableFunc) {
 
         // find and iterate through all users, return plain arrays instead of BSON Documents
-        $allElements = $this->collection->find([], ['typeMap' => ['root' => 'array', 'document' => 'array', 'array' => 'array']])->toArray();
+        $allElements = $this->collection->find([], ['typeMap' => ['root' => 'array', 'document' => 'array', 'array' => 'array']]);
         foreach ($allElements as $element) {
 
             // save the id for a possible future update
