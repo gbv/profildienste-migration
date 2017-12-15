@@ -21,7 +21,7 @@ class WrongCoverStats extends TitleMigration {
     public function apply() {
         $this->forEachTitle(function ($title){
             exit(0);
-        }, function (){
+        }, function ($title){
             $rawISBN = isset($title['004A']['A']) ? $title['004A']['A'] : null;
             if ($rawISBN && isset($title['XX02'])) {
                 $match = null;
