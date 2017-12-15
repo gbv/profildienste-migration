@@ -52,7 +52,7 @@ abstract class CollectionMigration extends Migration {
 
             // check if the mutation should be applied to the user
             if (call_user_func($applicableFunc, $element) !== true){
-                $this->printToLog(get_class($this) . ' is not applicable to user ' . $id);
+                $this->printToLog(get_class($this) . ' is not applicable to element ' . $id);
                 continue;
             }
 
@@ -62,7 +62,7 @@ abstract class CollectionMigration extends Migration {
             $ret = call_user_func($func, $element);
 
             if ($ret === FALSE) {
-                $this->errorAndDie('An error occured!');
+                $this->errorAndDie('An error occurred!');
             }
 
             // a return value which does not equals null means that the modified data should
@@ -77,7 +77,7 @@ abstract class CollectionMigration extends Migration {
                 if ($result->getMatchedCount() === 1 && $result->isAcknowledged()) {
                     $this->printToLog('Saved modified element to the database');
                 } else {
-                    $this->errorAndDie('An error occured while saving the modified document');
+                    $this->errorAndDie('An error occurred while saving the modified document');
                 }
             }
         }

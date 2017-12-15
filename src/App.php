@@ -4,6 +4,7 @@ use Migrations\ChangeLieftToSupplierTitle;
 use Migrations\FixMissingStatusField;
 use Migrations\RemoveTitleWatchlistField;
 use Migrations\ResetMissingCovers;
+use Migrations\WrongCoverStats;
 use MongoDB\Client;
 use Migrations\ChangeWatchlists;
 use Migrations\RemoveUserPriceInfo;
@@ -88,9 +89,10 @@ class App {
             /*new RenameBudgetsAndDefault($users),
             new ChangeWatchlists($users, $titles),
             new RemoveTitleWatchlistField($titles),
-            new FixMissingStatusField($titles)*/
+            new FixMissingStatusField($titles)
             new ChangeLieftToSupplierTitle($titles),
-            new ResetMissingCovers($titles)
+            new ResetMissingCovers($titles)*/
+           new WrongCoverStats($titles)
         ];
 
         // run each migration as specified above
