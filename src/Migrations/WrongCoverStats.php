@@ -13,6 +13,8 @@ use Migrations\Common\TitleMigration;
 
 class WrongCoverStats extends TitleMigration {
 
+    private $stat = 0;
+
     /**
      * Applies the migration
      *
@@ -20,14 +22,13 @@ class WrongCoverStats extends TitleMigration {
      */
     public function apply() {
         $this->forEachTitle(function ($title){
-            exit(0);
+            $this->stat++;
         }, function ($title){
             $rawISBN = isset($title['004A']['A']) ? $title['004A']['A'] : null;
             if ($rawISBN && isset($title['XX02'])) {
                 $match = null;
-                if (preg_match('\/api\/cover\/(\d+)', $title['XX02']['md'], $match)) {
-                    var_dump($match);
-                    return true;
+                if (preg_match('/\/api\/cover\/(\d+)/', $title['XX02']['md'], $match)) {
+                    return $rawISBN === $match[1];
                 } else {
                     return false;
                 }
@@ -35,5 +36,7 @@ class WrongCoverStats extends TitleMigration {
                 return false;
             }
         });
+
+        echo "Affected titles: ". $this->stat ."\n";
     }
 }
