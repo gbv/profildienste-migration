@@ -29,10 +29,8 @@ class RemoveWrongCoverURLs extends TitleMigration {
             if ($rawISBN && isset($title['XX02'])) {
                 $match = null;
                 if (preg_match('/\/api\/cover\/(\d+)/', $title['XX02']['md'], $match)) {
-                    echo "raw: $rawISBN - is: " . $match[1];
-                    print($rawISBN !== $match[1]);
-                    exit(0);
-                    return false;
+                    echo "Raw: $rawISBN,  is: " . $match[1] . "\n";
+                    return $rawISBN !== $match[1];
                 } else {
                     return false;
                 }
