@@ -11,7 +11,7 @@ namespace Migrations;
 
 use Migrations\Common\TitleMigration;
 
-class WrongCoverStats extends TitleMigration {
+class RemoveWrongCoverURLs extends TitleMigration {
 
     private $stat = 0;
 
@@ -22,13 +22,17 @@ class WrongCoverStats extends TitleMigration {
      */
     public function apply() {
         $this->forEachTitle(function ($title){
-            $this->stat++;
+            $title['XX02'] = null;
+            return $title;
         }, function ($title){
             $rawISBN = isset($title['004A']['A']) ? $title['004A']['A'] : null;
             if ($rawISBN && isset($title['XX02'])) {
                 $match = null;
                 if (preg_match('/\/api\/cover\/(\d+)/', $title['XX02']['md'], $match)) {
-                    return $rawISBN === $match[1];
+                    echo "raw: $rawISBN - is: " . $match[1];
+                    print($rawISBN !== $match[1]);
+                    exit(0);
+                    return false;
                 } else {
                     return false;
                 }
